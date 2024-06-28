@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Produto } from '../models/Produto.model';
+import { Produto } from './models/Produto.model';
 import { ProdutoService } from '../produto.service';
 
 @Component({
@@ -7,19 +7,19 @@ import { ProdutoService } from '../produto.service';
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css']
 })
-export class InicioComponent implements OnInit{
+export class InicioComponent implements OnInit {
 
   public produtos: Produto[] = [];
 
-  constructor(private _produtoService:ProdutoService){}
+  constructor(private _produtoService: ProdutoService) {}
 
   ngOnInit(): void {
     this.listarProdutos();
   }
 
-  listarProdutos():void{
+  listarProdutos(): void {
     this._produtoService.getProdutos().subscribe(
-      retornaProduto =>{
+      retornaProduto => {
         this.produtos = retornaProduto.map(
           item => {
             return new Produto(
@@ -30,9 +30,8 @@ export class InicioComponent implements OnInit{
               item.preco
             );
           }
-        )
+        );
       }
-    )
+    );
   }
-
 }
